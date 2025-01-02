@@ -1,0 +1,20 @@
+{
+    "manifest_version": 2,
+    "name": "Your extension",
+    "version": "1.1",
+    "description": "Your extension description",
+    "permissions": [
+        "scripting",
+        "activeTab"
+    ],
+    "browser_action": {
+        "default_icon": {
+            "512": "icons/icon.png"
+        }
+    },
+    "background": {
+        "scripts": [
+            "worker.js"
+        ]
+    }
+}
