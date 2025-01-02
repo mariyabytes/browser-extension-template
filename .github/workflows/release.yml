@@ -1,0 +1,48 @@
+name: Release Extensions
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    name: Build and Release Extensions
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set Up Dependencies
+      run: sudo apt-get update && sudo apt-get install -y zip
+
+    - name: Run Build Script
+      run: |
+        chmod +x ./generate_plugins.sh
+        ./generate_plugins.sh
+
+    - name: Upload Chrome Extension
+      uses: actions/upload-artifact@v3
+      with:
+        name: chrome-extension
+        path: build/chrome/v3.zip
+
+    - name: Upload Firefox Extension
+      uses: actions/upload-artifact@v3
+      with:
+        name: firefox-extension
+        path: build/firefox/v2.zip
+
+    - name: Create GitHub Release
+      uses: ncipollo/release-action@v1
+      with:
+        tag: ${{ github.ref_name }}
+        name: ${{ github.ref_name }}
+        body: |
+          Release for extensions:
+          - Chrome: [Download Chrome Extension](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/chrome.zip)
+          - Firefox: [Download Firefox Extension](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/firefox.zip)
+        artifacts: |
+          chrome-extension=chrome.zip
+          firefox-extension=firefox.zip
