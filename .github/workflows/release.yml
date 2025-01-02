@@ -9,6 +9,9 @@ jobs:
   build-and-release:
     name: Build and Release Extensions
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: write
 
     steps:
     - name: Checkout Code
@@ -36,9 +39,6 @@ jobs:
 
     - name: Create GitHub Release
       uses: ncipollo/release-action@v1
-      permissions:
-        packages: write
-        contents: write
       with:
         tag: ${{ github.ref_name }}
         name: ${{ github.ref_name }}
