@@ -9,6 +9,7 @@ jobs:
   build-and-release:
     name: Build and Release Extensions
     runs-on: ubuntu-latest
+
     permissions:
       packages: write
       contents: write
@@ -25,17 +26,22 @@ jobs:
         chmod +x ./generate_plugins.sh
         ./generate_plugins.sh
 
+    - name: Move Zipped Files to Root
+      run: |
+        cp build/chrome/v3.zip chrome.zip
+        cp build/firefox/v2.zip firefox.zip
+
     - name: Upload Chrome Extension
       uses: actions/upload-artifact@v3
       with:
         name: chrome-extension
-        path: build/chrome/v3.zip
+        path: chrome.zip
 
     - name: Upload Firefox Extension
       uses: actions/upload-artifact@v3
       with:
         name: firefox-extension
-        path: build/firefox/v2.zip
+        path: firefox.zip
 
     - name: Create GitHub Release
       uses: ncipollo/release-action@v1
