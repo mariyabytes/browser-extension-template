@@ -36,6 +36,9 @@ jobs:
 
     - name: Create GitHub Release
       uses: ncipollo/release-action@v1
+      permissions:
+        packages: write
+        contents: write
       with:
         tag: ${{ github.ref_name }}
         name: ${{ github.ref_name }}
