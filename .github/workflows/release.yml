@@ -53,5 +53,5 @@ jobs:
           - Chrome: [Download Chrome Extension](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/chrome.zip)
           - Firefox: [Download Firefox Extension](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/firefox.zip)
         artifacts: |
-          chrome-extension=chrome.zip
-          firefox-extension=firefox.zip
+          chrome.zip
+          firefox.zip
