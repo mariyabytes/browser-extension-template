@@ -11,7 +11,7 @@ This is a template repository for hosting a cross-browser browser extension. It 
 
 ### Download and install
 The extension is not yet published on the Firefox Add-on store or the Chrome Web store.
-You can download the latest release (for your browser) from the [releases](/mariyabytes/releases) section.
+You can download the latest release (for your browser) from the [releases](https://github.com/mariyabytes/browser-extension-template/releases/latest) section.
 
 To install the extension from the downloaded folder locally, follow the steps here:
 - [Mozilla Firefox](https://extensionworkshop.com/documentation/develop/temporary-installation-in-firefox/)
